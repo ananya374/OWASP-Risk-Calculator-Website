@@ -1,0 +1,124 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #bbdefb);
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* Headings */
+h1 {
+    color: #0d47a1;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #1565c0;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* Sections */
+.section {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(187, 222, 251, 0.8);
+    border-radius: 10px;
+    border-left: 5px solid #0d47a1;
+    transition: all 0.3s ease-in-out;
+}
+
+.section:hover {
+    background: rgba(100, 181, 246, 0.8);
+}
+
+/* Labels & Select Boxes */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+    color: #0d47a1;
+    text-align: left;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #0d47a1;
+    font-size: 16px;
+    background: #e3f2fd;
+    color: #0d47a1;
+    transition: all 0.3s ease-in-out;
+}
+
+select:hover,
+select:focus {
+    background: #bbdefb;
+    outline: none;
+    border-color: #1565c0;
+}
+
+/* Score Display */
+.score {
+    margin: 20px 0;
+    padding: 15px;
+    background: #1e88e5;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+.score:hover {
+    background: #0d47a1;
+}
+
+/* Final Risk Score */
+.final-score {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffeb3b;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    padding: 15px;
+    background: linear-gradient(to right, #0d47a1, #1565c0);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.2s ease-in-out;
+}
+
+footer:hover {
+    transform: scale(1.05);
+}
+
+footer p {
+    margin: 0;
+}

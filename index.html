@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Risk Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer>
+        function calc_score() {
+            // Threat Agent Factors
+            let sl = parseInt(document.getElementById('sl').value);
+            let motive = parseInt(document.getElementById('motive').value);
+            let oppor = parseInt(document.getElementById('oppor').value);
+            let size = parseInt(document.getElementById('size').value);
+
+            // Vulnerability Factors
+            let eod = parseInt(document.getElementById('eod').value);
+            let eoe = parseInt(document.getElementById('eoe').value);
+            let awareness = parseInt(document.getElementById('awareness').value);
+            let intrusion = parseInt(document.getElementById('intrusion').value);
+
+            // Likelihood Score Calculation
+            let likelihood = (sl + motive + oppor + size + eod + eoe + awareness + intrusion) / 8;
+            document.getElementById('like_score').textContent = likelihood.toFixed(2);
+
+            // Technical Impact Factors
+            let loc = parseInt(document.getElementById('loc').value);
+            let loi = parseInt(document.getElementById('loi').value);
+            let loa = parseInt(document.getElementById('loa').value);
+            let loac = parseInt(document.getElementById('loac').value);
+
+            // Business Impact Factors
+            let fin = parseInt(document.getElementById('fin').value);
+            let rep = parseInt(document.getElementById('rep').value);
+            let non = parseInt(document.getElementById('non').value);
+            let priv = parseInt(document.getElementById('priv').value);
+
+            // Impact Score Calculation
+            let impact = (loc + loi + loa + loac + fin + rep + non + priv) / 8;
+            document.getElementById('impact_score').textContent = impact.toFixed(2);
+
+            // Risk Score Calculation
+            let risk_score = likelihood * impact;
+            document.getElementById('risk_score').textContent = risk_score.toFixed(2);
+        }
+
+        document.addEventListener("DOMContentLoaded", calc_score);
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>OWASP Risk Calculator</h1>
+
+        <div class="section">
+            <h2>Threat Agent Factors</h2>
+            <label>Skill Level</label>
+            <select id="sl" onchange="calc_score()">
+                <option value="1">No Technical Skills</option>
+                <option value="3" selected>Some Technical Skills</option>
+                <option value="5">Advanced User</option>
+                <option value="6">Network & Programming Skills</option>
+                <option value="9">Security Penetration Skills</option>
+            </select>
+
+            <label>Motive</label>
+            <select id="motive" onchange="calc_score()">
+                <option value="1">Low Reward</option>
+                <option value="4" selected>Possible Reward</option>
+                <option value="9">High Reward</option>
+            </select>
+
+            <label>Opportunity</label>
+            <select id="oppor" onchange="calc_score()">
+                <option value="0">Full Access Needed</option>
+                <option value="4">Special Access Needed</option>
+                <option value="7" selected>Some Access Needed</option>
+                <option value="9">No Access Needed</option>
+            </select>
+
+            <label>Size</label>
+            <select id="size" onchange="calc_score()">
+                <option value="2">Developers</option>
+                <option value="4">Intranet Users</option>
+                <option value="5">Partners</option>
+                <option value="6" selected>Authenticated Users</option>
+                <option value="9">Anonymous Users</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Vulnerability Factors</h2>
+            <label>Ease of Discovery</label>
+            <select id="eod" onchange="calc_score()">
+                <option value="1">Practically Impossible</option>
+                <option value="3">Difficult</option>
+                <option value="7" selected>Easy</option>
+                <option value="9">Automated Tools</option>
+            </select>
+
+            <label>Ease of Exploit</label>
+            <select id="eoe" onchange="calc_score()">
+                <option value="1">Theoretical</option>
+                <option value="3">Difficult</option>
+                <option value="5" selected>Easy</option>
+                <option value="9">Automated Tools Available</option>
+            </select>
+
+            <label>Awareness</label>
+            <select id="awareness" onchange="calc_score()">
+                <option value="9">Unknown</option>
+                <option value="5" selected>Hidden</option>
+                <option value="3">Publicly Known</option>
+                <option value="1">Fully Disclosed</option>
+            </select>
+
+            <label>Intrusion Detection</label>
+            <select id="intrusion" onchange="calc_score()">
+                <option value="9">Active Detection in Application</option>
+                <option value="7">Logged and Reviewed</option>
+                <option value="5" selected>Logged without Review</option>
+                <option value="1">Not Logged</option>
+            </select>
+        </div>
+
+        <div class="score">
+            <h3>Likelihood Score: <span id="like_score">0</span></h3>
+        </div>
+
+        <div class="section">
+            <h2>Technical Impact Factors</h2>
+            <label>Loss of Confidentiality</label>
+            <select id="loc" onchange="calc_score()">
+                <option value="2">Minimal Data Disclosed</option>
+                <option value="6">Critical Data Disclosed</option>
+                <option value="9">All Data Disclosed</option>
+            </select>
+
+            <label>Loss of Integrity</label>
+            <select id="loi" onchange="calc_score()">
+                <option value="2">Slightly Corrupt Data</option>
+                <option value="6">Seriously Corrupt Data</option>
+                <option value="9">All Data Totally Corrupt</option>
+            </select>
+
+            <label>Loss of Availability</label>
+            <select id="loa" onchange="calc_score()">
+                <option value="2">Minimal Services Interrupted</option>
+                <option value="6">Extensive Services Interrupted</option>
+                <option value="9">All Services Completely Lost</option>
+            </select>
+
+            <label>Loss of Accountability</label>
+            <select id="loac" onchange="calc_score()">
+                <option value="2">Fully Traceable</option>
+                <option value="6">Possibly Traceable</option>
+                <option value="9">Completely Anonymous</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <h2>Business Impact Factors</h2>
+            <label>Financial Damage</label>
+            <select id="fin" onchange="calc_score()">
+                <option value="2">Minor Effect on Annual Profit</option>
+                <option value="6">Significant Effect on Annual Profit</option>
+                <option value="9">Bankruptcy</option>
+            </select>
+
+            <label>Reputation Damage</label>
+            <select id="rep" onchange="calc_score()">
+                <option value="2">Minimal</option>
+                <option value="6">Moderate</option>
+                <option value="9">Severe</option>
+            </select>
+
+            <label>Non-compliance</label>
+            <select id="non" onchange="calc_score()">
+                <option value="2">Minor Violation</option>
+                <option value="6">Clear Violation</option>
+                <option value="9">High Profile Violation</option>
+            </select>
+
+            <label>Privacy Violation</label>
+            <select id="priv" onchange="calc_score()">
+                <option value="2">One Individual</option>
+                <option value="6">Hundreds and Thousands of People</option>
+                <option value="9">Millions of People</option>
+            </select>
+        </div>
+
+        <div class="score">
+            <h3>Impact Score: <span id="impact_score">0</span></h3>
+        </div>
+
+        <div class="score">
+            <h3>Risk Score: <span id="risk_score">0</span></h3>
+        </div>
+        <footer style="margin-top: 20px; padding: 10px; background: #1565c0; color: white; font-size: 18px; border-radius: 6px;">
+            Made by Ananya Arora ❤️
+        </footer>
+    </div>
+
+</body>
+</html>
